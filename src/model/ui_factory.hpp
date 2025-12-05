@@ -18,6 +18,9 @@ namespace biv {
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual void create_enemy(
 				const Coord& top_left, const int width, const int height) = 0;
+            virtual void create_flying_enemy(
+                    const Coord& top_left, const int width, const int height, 
+					const float left_bound, const float right_bound) = 0;
 			virtual void create_full_box(
 				const Coord& top_left, const int width, const int height) = 0;
 			virtual void create_mario(
