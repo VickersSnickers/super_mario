@@ -1,5 +1,8 @@
 @echo off
 
+set "MINGW_PATH=E:\ProgramFiles\C++\mingw64\bin"
+set "PATH=%MINGW_PATH%;%PATH%"
+
 set BUILD_TYPE=Ninja
 set BUILD_SUFFIX=ninja
 
