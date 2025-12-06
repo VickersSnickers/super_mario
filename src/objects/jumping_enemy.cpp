@@ -15,12 +15,20 @@ void JumpingEnemy::move_vertically() noexcept {
 }
 
 void JumpingEnemy::move_horizontally() noexcept {
-        if (is_grounded_ && ground_ != nullptr) {
-                const float next_left = top_left.x + hspeed;
-                const float next_right = next_left + width;
+        if (ground_ != nullptr) {
+                float next_left = top_left.x + hspeed;
+                float next_right = next_left + width;
 
-                if (next_right <= ground_->get_left() || next_left >= ground_->get_right()) {
+                if (next_left < ground_->get_left() || next_right > ground_->get_right()) {
                         hspeed = -hspeed;
+                        next_left = top_left.x + hspeed;
+                        next_right = next_left + width;
+
+                        if (next_left < ground_->get_left()) {
+                                top_left.x = ground_->get_left();
+                        } else if (next_right > ground_->get_right()) {
+                                top_left.x = ground_->get_right() - width;
+                        }
                 }
         }
 
