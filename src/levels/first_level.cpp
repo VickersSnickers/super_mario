@@ -41,13 +41,10 @@ void FirstLevel::init_data() {
 	ui_factory->create_ship({210, 20}, 15, 7);
 	
 	ui_factory->create_enemy({20, 5}, 3, 2);
-	ui_factory->create_enemy({25, 5}, 3, 2);
 	ui_factory->create_enemy({70, 15}, 3, 2);
 	ui_factory->create_enemy({80, 5}, 3, 2);
-	ui_factory->create_enemy({125, 5}, 3, 2);
-	ui_factory->create_enemy({160, 5}, 3, 2);
-    static constexpr float LEVEL_START_X = 0.0f;
-    static constexpr float LEVEL_END_X = 120.0f;
-    ui_factory->create_flying_enemy({140, 8}, 3, 2, LEVEL_START_X, LEVEL_END_X);
+    static constexpr float fe1_start = 0.0f;
+    static constexpr float fe1_end = 150.0f;
+    ui_factory->create_flying_enemy({180, 9}, 3, 2, fe1_start, fe1_end);
 	ui_factory->create_jumping_enemy({150, 5}, 3, 2);
 }
