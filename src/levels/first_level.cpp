@@ -49,4 +49,5 @@ void FirstLevel::init_data() {
     static constexpr float LEVEL_START_X = 0.0f;
     static constexpr float LEVEL_END_X = 120.0f;
     ui_factory->create_flying_enemy({140, 8}, 3, 2, LEVEL_START_X, LEVEL_END_X);
+	ui_factory->create_jumping_enemy({150, 5}, 3, 2);
 }
