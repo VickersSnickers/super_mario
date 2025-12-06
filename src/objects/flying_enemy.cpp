@@ -38,4 +38,16 @@ void FlyingEnemy::move_vertically() noexcept {
     top_left.y += new_offset - previous_offset;
 }
 
+void FlyingEnemy::move_map_left() noexcept {
+    RectMapMovableAdapter::move_map_left();
+    left_bound -= MapMovable::MAP_STEP;
+    right_bound -= MapMovable::MAP_STEP;
+}
+
+void FlyingEnemy::move_map_right() noexcept {
+    RectMapMovableAdapter::move_map_right();
+    left_bound += MapMovable::MAP_STEP;
+    right_bound += MapMovable::MAP_STEP;
+}
+
 void FlyingEnemy::process_vertical_static_collision(Rect*) noexcept {}
