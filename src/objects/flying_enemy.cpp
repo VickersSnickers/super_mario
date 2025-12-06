@@ -10,21 +10,21 @@ FlyingEnemy::FlyingEnemy(const Coord& top_left, const int width, const int heigh
     : Enemy(top_left, width, height), left_bound(left_bound), right_bound(right_bound) {}
 
 void FlyingEnemy::process_mario_collision(Collisionable* mario) noexcept {
-	mario->kill();
+    mario->kill();
 }
 
 void FlyingEnemy::move_horizontally() noexcept {
-        const float next_x = top_left.x + hspeed;
+    const float next_x = top_left.x + hspeed;
 
-        if (next_x < left_bound) {
-                top_left.x = left_bound;
-                hspeed = std::abs(hspeed);
-        } else if (next_x + width > right_bound) {
-                top_left.x = right_bound - width;
-                hspeed = -std::abs(hspeed);
-        } else {
-                top_left.x = next_x;
-        }
+    if (next_x < left_bound) {
+        top_left.x = left_bound;
+        hspeed = std::abs(hspeed);
+    } else if (next_x + width > right_bound) {
+        top_left.x = right_bound - width;
+        hspeed = -std::abs(hspeed);
+    } else {
+        top_left.x = next_x;
+    }
 }
 
 void FlyingEnemy::move_vertically() noexcept {
