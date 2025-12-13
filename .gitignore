@@ -6,5 +6,6 @@
 *.ii
 *.s
 *.o
+*.vscode
 
 build_ninja/
