@@ -13,7 +13,7 @@ void QtBox::paint(
     const QStyleOptionGraphicsItem*,
     QWidget*
 ) {
-    painter->setBrush(Qt::darkGray);
+    painter->setBrush(Qt::gray);
     painter->setPen(Qt::NoPen);
 
     painter->drawRect(boundingRect());

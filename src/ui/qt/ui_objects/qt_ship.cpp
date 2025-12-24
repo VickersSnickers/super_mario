@@ -13,7 +13,7 @@ void QtShip::paint(
     const QStyleOptionGraphicsItem*,
     QWidget*
 ) {
-    painter->setBrush(Qt::darkBlue);
+    painter->setBrush(Qt::black);
     painter->setPen(Qt::NoPen);
 
     painter->drawRect(boundingRect());

@@ -14,7 +14,7 @@ void QtFlyingEnemy::paint(
     const QStyleOptionGraphicsItem*,
     QWidget*
 ) {
-    painter->setBrush(Qt::darkCyan);
+    painter->setBrush(Qt::magenta);
     painter->setPen(Qt::NoPen);
 
     painter->drawEllipse(boundingRect());

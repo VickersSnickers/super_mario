@@ -13,7 +13,7 @@ void QtJumpingEnemy::paint(
     const QStyleOptionGraphicsItem*,
     QWidget*
 ) {
-    painter->setBrush(Qt::blue);
+    painter->setBrush(Qt::darkCyan);
     painter->setPen(Qt::NoPen);
 
     painter->drawRect(boundingRect());

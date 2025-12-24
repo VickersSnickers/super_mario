@@ -13,7 +13,7 @@ void QtMoney::paint(
     const QStyleOptionGraphicsItem*,
     QWidget*
 ) {
-    painter->setBrush(Qt::yellow);
+    painter->setBrush(Qt::darkYellow);
     painter->setPen(Qt::NoPen);
 
     painter->drawEllipse(boundingRect());

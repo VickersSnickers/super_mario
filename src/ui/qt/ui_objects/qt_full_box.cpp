@@ -14,7 +14,7 @@ void QtFullBox::paint(
     QWidget*
 ) {
     if (is_active()) {
-        painter->setBrush(Qt::yellow); // активная — жёлтая
+        painter->setBrush(Qt::darkRed); // активная — жёлтая
     } else {
         painter->setBrush(Qt::darkGray); // неактивная — тёмно-серая
     }
