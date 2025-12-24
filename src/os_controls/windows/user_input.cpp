@@ -5,11 +5,11 @@
 using biv::os::UserInput;
 
 UserInput biv::os::get_user_input() {
-	if (GetKeyState('A') < 0) {
-		return UserInput::MAP_RIGHT;
-	} else if (GetKeyState('D') < 0) {
+	if (GetKeyState('A') < 0 || GetKeyState(VK_LEFT) < 0) {
 		return UserInput::MAP_LEFT;
-	} else if (GetKeyState(VK_SPACE) < 0) {
+	} else if (GetKeyState('D') < 0 || GetKeyState(VK_RIGHT) < 0) {
+		return UserInput::MAP_RIGHT;
+	} else if (GetKeyState('W') < 0 || GetKeyState(VK_UP) < 0 || GetKeyState(VK_SPACE) < 0) {
 		return UserInput::MARIO_JUMP;
 	} else if (GetKeyState(VK_ESCAPE) < 0) {
 		return UserInput::EXIT;

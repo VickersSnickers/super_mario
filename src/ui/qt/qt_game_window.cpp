@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <QScreen>
+#include <QString>
 #include <algorithm>
 
 #include "mario.hpp"
@@ -70,6 +71,7 @@ void QtGameWindow::keyPressEvent(QKeyEvent* event) {
     if (event->isAutoRepeat()) {
         return;
     }
+    const QString key_text = event->text().toLower();
     switch (event->key()) {
         case Qt::Key_A:
         case Qt::Key_Left:
@@ -88,7 +90,15 @@ void QtGameWindow::keyPressEvent(QKeyEvent* event) {
             exit_requested_ = true;
             break;
         default:
-            QGraphicsView::keyPressEvent(event);
+            if (key_text == "a" || key_text == "ф") {
+                move_left_ = true;
+            } else if (key_text == "d" || key_text == "в") {
+                move_right_ = true;
+            } else if (key_text == "w" || key_text == "ц") {
+                jump_requested_ = true;
+            } else {
+                QGraphicsView::keyPressEvent(event);
+            }
     }
 }
 
@@ -96,6 +106,7 @@ void QtGameWindow::keyReleaseEvent(QKeyEvent* event) {
     if (event->isAutoRepeat()) {
         return;
     }
+    const QString key_text = event->text().toLower();
     switch (event->key()) {
         case Qt::Key_A:
         case Qt::Key_Left:
@@ -110,7 +121,13 @@ void QtGameWindow::keyReleaseEvent(QKeyEvent* event) {
         case Qt::Key_Up:
             break;
         default:
-            QGraphicsView::keyReleaseEvent(event);
+            if (key_text == "a" || key_text == "ф") {
+                move_left_ = false;
+            } else if (key_text == "d" || key_text == "в") {
+                move_right_ = false;
+            } else {
+                QGraphicsView::keyReleaseEvent(event);
+            }
     }
 }
 

@@ -39,17 +39,17 @@ int main(int argc, char* argv[]) {
             mario->jump();
         }
         if (window.is_move_left() && !window.is_move_right()) {
-            mario->move_map_left();
-            if (!game.check_static_collisions(mario)) {
-                game.move_map_left();
-            }
-            mario->move_map_right();
-        } else if (window.is_move_right() && !window.is_move_left()) {
             mario->move_map_right();
             if (!game.check_static_collisions(mario)) {
                 game.move_map_right();
             }
             mario->move_map_left();
+        } else if (window.is_move_right() && !window.is_move_left()) {
+            mario->move_map_left();
+            if (!game.check_static_collisions(mario)) {
+                game.move_map_left();
+            }
+            mario->move_map_right();
         }
 
         // 3. Обновление внутреннего состояния игры
