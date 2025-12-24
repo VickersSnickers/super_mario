@@ -27,6 +27,7 @@ namespace biv {
 			GameLevel(UIFactory*);
 
 		public:
+			virtual ~GameLevel() = default;
 			virtual void restart();
 			virtual bool is_final() const noexcept;
 
