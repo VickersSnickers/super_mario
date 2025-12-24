@@ -9,7 +9,7 @@ QtUIObjectRectAdapter::QtUIObjectRectAdapter(const Rect& r)
 
 void QtUIObjectRectAdapter::sync_with_model() {
     setPos(
-        rect.left * TILE_SIZE,
-        rect.top * TILE_SIZE
+        rect.get_left() * TILE_SIZE,
+        rect.get_top() * TILE_SIZE
     );
 }

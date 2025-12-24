@@ -2,23 +2,20 @@
 
 #include <QGraphicsItem>
 
-#include "qt_ui_obj_rect_adapter.hpp"
 #include "objects/enemy.hpp"
+#include "qt_ui_obj_rect_adapter.hpp"
 
 namespace biv {
 
-class QtEnemy : public QtUIObjectRectAdapter {
+class QtEnemy : public Enemy, public QtUIObjectRectAdapter {
 public:
-    explicit QtEnemy(const Enemy& enemy);
+    QtEnemy(const Coord& top_left, int width, int height);
 
     void paint(
         QPainter* painter,
         const QStyleOptionGraphicsItem* option,
         QWidget* widget = nullptr
     ) override;
-
-private:
-    const Enemy& enemy;
 };
 
 }

@@ -2,14 +2,14 @@
 
 #include <QGraphicsItem>
 
-#include "qt_ui_obj_rect_adapter.hpp"
 #include "objects/mario.hpp"
+#include "qt_ui_obj_rect_adapter.hpp"
 
 namespace biv {
 
-class QtMario : public QtUIObjectRectAdapter {
+class QtMario : public Mario, public QtUIObjectRectAdapter {
 public:
-    explicit QtMario(const Mario& mario);
+    QtMario(const Coord& top_left, int width, int height);
 
     // Отрисовка
     void paint(
@@ -17,9 +17,6 @@ public:
         const QStyleOptionGraphicsItem* option,
         QWidget* widget = nullptr
     ) override;
-
-private:
-    const Mario& mario;
 };
 
 } // namespace biv

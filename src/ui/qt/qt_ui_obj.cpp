@@ -7,10 +7,7 @@ QtUIObject::QtUIObject(const Rect& r)
 
 QRectF QtUIObject::boundingRect() const {
     constexpr int TILE_SIZE = 32;
-    return QRectF(
-        rect.left * TILE_SIZE,
-        rect.top * TILE_SIZE,
-        rect.width * TILE_SIZE,
-        rect.height * TILE_SIZE
-    );
+    const qreal width = (rect.get_right() - rect.get_left()) * TILE_SIZE;
+    const qreal height = (rect.get_bottom() - rect.get_top()) * TILE_SIZE;
+    return QRectF(0, 0, width, height);
 }

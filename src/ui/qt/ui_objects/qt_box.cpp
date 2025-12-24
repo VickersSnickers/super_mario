@@ -4,9 +4,9 @@
 
 using biv::QtBox;
 
-QtBox::QtBox(const Box& b)
-    : QtUIObjectRectAdapter(b.get_rect()),
-      box(b) {}
+QtBox::QtBox(const Coord& top_left, int width, int height)
+    : Box(top_left, width, height),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
 void QtBox::paint(
     QPainter* painter,

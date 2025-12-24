@@ -4,9 +4,9 @@
 
 using biv::QtEnemy;
 
-QtEnemy::QtEnemy(const Enemy& e)
-    : QtUIObjectRectAdapter(e.get_rect()),
-      enemy(e) {}
+QtEnemy::QtEnemy(const Coord& top_left, int width, int height)
+    : Enemy(top_left, width, height),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
 void QtEnemy::paint(
     QPainter* painter,

@@ -4,9 +4,9 @@
 
 using biv::QtShip;
 
-QtShip::QtShip(const Ship& s)
-    : QtUIObjectRectAdapter(s.get_rect()),
-      ship(s) {}
+QtShip::QtShip(const Coord& top_left, int width, int height)
+    : Ship(top_left, width, height),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
 void QtShip::paint(
     QPainter* painter,

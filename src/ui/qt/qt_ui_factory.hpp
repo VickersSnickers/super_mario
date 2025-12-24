@@ -6,14 +6,14 @@
 
 #include "qt_game_map.hpp"
 
-#include "ui/qt/ui_objects/qt_box.hpp"
-#include "ui/qt/ui_objects/qt_full_box.hpp"
-#include "ui/qt/ui_objects/qt_enemy.hpp"
-#include "ui/qt/ui_objects/qt_flying_enemy.hpp"
-#include "ui/qt/ui_objects/qt_jumping_enemy.hpp"
-#include "ui/qt/ui_objects/qt_mario.hpp"
-#include "ui/qt/ui_objects/qt_money.hpp"
-#include "ui/qt/ui_objects/qt_ship.hpp"
+#include "ui_objects/qt_box.hpp"
+#include "ui_objects/qt_full_box.hpp"
+#include "ui_objects/qt_enemy.hpp"
+#include "ui_objects/qt_flying_enemy.hpp"
+#include "ui_objects/qt_jumping_enemy.hpp"
+#include "ui_objects/qt_mario.hpp"
+#include "ui_objects/qt_money.hpp"
+#include "ui_objects/qt_ship.hpp"
 
 namespace biv {
 
@@ -34,6 +34,7 @@ private:
 
 public:
     explicit QtUIFactory(Game* game);
+    ~QtUIFactory() override;
 
     void clear_data() override;
 

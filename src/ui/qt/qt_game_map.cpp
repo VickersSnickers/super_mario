@@ -18,6 +18,10 @@ void QtGameMap::add_obj(QtUIObject* obj) {
     addItem(obj);
 }
 
+void QtGameMap::clear() noexcept {
+    // Background is managed by the view; nothing to clear here.
+}
+
 void QtGameMap::remove_obj(QtUIObject* obj) {
     removeItem(obj);
     objs.erase(std::remove(objs.begin(), objs.end(), obj), objs.end());
@@ -34,4 +38,8 @@ void QtGameMap::refresh() noexcept {
     for (QtUIObject* obj : objs) {
         obj->sync_with_model();
     }
+}
+
+void QtGameMap::show() const noexcept {
+    // Rendering is handled by a QGraphicsView; nothing to do here.
 }

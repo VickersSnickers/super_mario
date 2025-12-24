@@ -1,24 +1,21 @@
-#pragma once
+#include "qt_flying_enemy.hpp"
 
-#include <QGraphicsItem>
+#include <QPainter>
 
-#include "qt_ui_obj_rect_adapter.hpp"
-#include "objects/flying_enemy.hpp"
+using biv::QtFlyingEnemy;
 
-namespace biv {
+QtFlyingEnemy::QtFlyingEnemy(
+    const Coord& top_left, int width, int height, float left_bound, float right_bound)
+    : FlyingEnemy(top_left, width, height, left_bound, right_bound),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
-class QtFlyingEnemy : public QtUIObjectRectAdapter {
-public:
-    explicit QtFlyingEnemy(const FlyingEnemy& enemy);
+void QtFlyingEnemy::paint(
+    QPainter* painter,
+    const QStyleOptionGraphicsItem*,
+    QWidget*
+) {
+    painter->setBrush(Qt::darkCyan);
+    painter->setPen(Qt::NoPen);
 
-    void paint(
-        QPainter* painter,
-        const QStyleOptionGraphicsItem* option,
-        QWidget* widget = nullptr
-    ) override;
-
-private:
-    const FlyingEnemy& enemy;
-};
-
-} // namespace biv
+    painter->drawEllipse(boundingRect());
+}

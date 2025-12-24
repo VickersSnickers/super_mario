@@ -2,23 +2,20 @@
 
 #include <QGraphicsItem>
 
-#include "qt_ui_obj_rect_adapter.hpp"
 #include "objects/money.hpp"
+#include "qt_ui_obj_rect_adapter.hpp"
 
 namespace biv {
 
-class QtMoney : public QtUIObjectRectAdapter {
+class QtMoney : public Money, public QtUIObjectRectAdapter {
 public:
-    explicit QtMoney(const Money& money);
+    QtMoney(const Coord& top_left, int width, int height);
 
     void paint(
         QPainter* painter,
         const QStyleOptionGraphicsItem* option,
         QWidget* widget = nullptr
     ) override;
-
-private:
-    const Money& money;
 };
 
 } // namespace biv

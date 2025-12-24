@@ -4,9 +4,9 @@
 
 using biv::QtMario;
 
-QtMario::QtMario(const Mario& m)
-    : QtUIObjectRectAdapter(m.get_rect()),
-      mario(m) {}
+QtMario::QtMario(const Coord& top_left, int width, int height)
+    : Mario(top_left, width, height),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
 void QtMario::paint(
     QPainter* painter,

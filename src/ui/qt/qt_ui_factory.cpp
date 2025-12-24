@@ -1,10 +1,16 @@
 #include "qt_ui_factory.hpp"
 
-using biv::QtUIFactory;
+namespace biv {
 
 QtUIFactory::QtUIFactory(Game* game)
     : UIFactory(game) {
     create_game_map();
+}
+
+QtUIFactory::~QtUIFactory() {
+    clear_data();
+    delete game_map;
+    game_map = nullptr;
 }
 
 void QtUIFactory::clear_data() {
@@ -14,17 +20,44 @@ void QtUIFactory::clear_data() {
     delete mario;
     mario = nullptr;
 
+    for (auto* box : boxes) {
+        delete box;
+    }
     boxes.clear();
+
+    for (auto* box : full_boxes) {
+        delete box;
+    }
     full_boxes.clear();
+
+    for (auto* ship : ships) {
+        delete ship;
+    }
     ships.clear();
+
+    for (auto* enemy : enemies) {
+        delete enemy;
+    }
     enemies.clear();
+
+    for (auto* enemy : flying_enemies) {
+        delete enemy;
+    }
     flying_enemies.clear();
+
+    for (auto* enemy : jumping_enemies) {
+        delete enemy;
+    }
     jumping_enemies.clear();
+
+    for (auto* money : moneys) {
+        delete money;
+    }
     moneys.clear();
 }
 
-void QtUIFactory::create_box(const Coord&, int, int) {
-    auto* box = new QtBox(*game->get_last_created_box());
+void QtUIFactory::create_box(const Coord& top_left, int width, int height) {
+    auto* box = new QtBox(top_left, width, height);
     boxes.push_back(box);
 
     game->add_map_movable(box);
@@ -32,8 +65,8 @@ void QtUIFactory::create_box(const Coord&, int, int) {
     game_map->add_obj(box);
 }
 
-void QtUIFactory::create_enemy(const Coord&, int, int) {
-    auto* enemy = new QtEnemy(*game->get_last_created_enemy());
+void QtUIFactory::create_enemy(const Coord& top_left, int width, int height) {
+    auto* enemy = new QtEnemy(top_left, width, height);
     enemies.push_back(enemy);
 
     game->add_map_movable(enemy);
@@ -42,8 +75,9 @@ void QtUIFactory::create_enemy(const Coord&, int, int) {
     game_map->add_obj(enemy);
 }
 
-void QtUIFactory::create_flying_enemy(const Coord&, int, int, float, float) {
-    auto* enemy = new QtFlyingEnemy(*game->get_last_created_flying_enemy());
+void QtUIFactory::create_flying_enemy(
+    const Coord& top_left, int width, int height, float left_bound, float right_bound) {
+    auto* enemy = new QtFlyingEnemy(top_left, width, height, left_bound, right_bound);
     flying_enemies.push_back(enemy);
 
     game->add_map_movable(enemy);
@@ -52,8 +86,8 @@ void QtUIFactory::create_flying_enemy(const Coord&, int, int, float, float) {
     game_map->add_obj(enemy);
 }
 
-void QtUIFactory::create_jumping_enemy(const Coord&, int, int) {
-    auto* enemy = new QtJumpingEnemy(*game->get_last_created_jumping_enemy());
+void QtUIFactory::create_jumping_enemy(const Coord& top_left, int width, int height) {
+    auto* enemy = new QtJumpingEnemy(top_left, width, height);
     jumping_enemies.push_back(enemy);
 
     game->add_map_movable(enemy);
@@ -62,8 +96,8 @@ void QtUIFactory::create_jumping_enemy(const Coord&, int, int) {
     game_map->add_obj(enemy);
 }
 
-void QtUIFactory::create_full_box(const Coord&, int, int) {
-    auto* box = new QtFullBox(*game->get_last_created_full_box());
+void QtUIFactory::create_full_box(const Coord& top_left, int width, int height) {
+    auto* box = new QtFullBox(top_left, width, height, this);
     full_boxes.push_back(box);
 
     game->add_collisionable(box);
@@ -72,7 +106,7 @@ void QtUIFactory::create_full_box(const Coord&, int, int) {
     game_map->add_obj(box);
 }
 
-void QtUIFactory::create_mario(const Coord&, int, int) {
+void QtUIFactory::create_mario(const Coord& top_left, int width, int height) {
     if (mario) {
         game->remove_collisionable(mario);
         game->remove_movable(mario);
@@ -81,7 +115,7 @@ void QtUIFactory::create_mario(const Coord&, int, int) {
         delete mario;
     }
 
-    mario = new QtMario(*game->get_last_created_mario());
+    mario = new QtMario(top_left, width, height);
 
     game->add_collisionable(mario);
     game->add_movable(mario);
@@ -89,8 +123,8 @@ void QtUIFactory::create_mario(const Coord&, int, int) {
     game_map->add_obj(mario);
 }
 
-void QtUIFactory::create_money(const Coord&, int, int) {
-    auto* money = new QtMoney(*game->get_last_created_money());
+void QtUIFactory::create_money(const Coord& top_left, int width, int height) {
+    auto* money = new QtMoney(top_left, width, height);
     moneys.push_back(money);
 
     game->add_map_movable(money);
@@ -99,8 +133,8 @@ void QtUIFactory::create_money(const Coord&, int, int) {
     game_map->add_obj(money);
 }
 
-void QtUIFactory::create_ship(const Coord&, int, int) {
-    auto* ship = new QtShip(*game->get_last_created_ship());
+void QtUIFactory::create_ship(const Coord& top_left, int width, int height) {
+    auto* ship = new QtShip(top_left, width, height);
     ships.push_back(ship);
 
     game->add_map_movable(ship);
@@ -123,3 +157,5 @@ Mario* QtUIFactory::get_mario() {
 void QtUIFactory::create_game_map() {
     game_map = new QtGameMap(30, 200);
 }
+
+} // namespace biv

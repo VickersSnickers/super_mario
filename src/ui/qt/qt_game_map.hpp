@@ -10,8 +10,6 @@
 namespace biv {
 
 class QtGameMap : public QGraphicsScene, public GameMap {
-    Q_OBJECT
-
 private:
     std::vector<QtUIObject*> objs;
 
@@ -20,9 +18,11 @@ public:
     ~QtGameMap() override = default;
 
     void add_obj(QtUIObject*);
+    void clear() noexcept override;
     void refresh() noexcept override;
     void remove_obj(QtUIObject*);
     void remove_objs() override;
+    void show() const noexcept override;
 };
 
 }

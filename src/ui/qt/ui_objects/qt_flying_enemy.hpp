@@ -2,23 +2,20 @@
 
 #include <QGraphicsItem>
 
-#include "qt_ui_obj_rect_adapter.hpp"
 #include "objects/flying_enemy.hpp"
+#include "qt_ui_obj_rect_adapter.hpp"
 
 namespace biv {
 
-class QtFlyingEnemy : public QtUIObjectRectAdapter {
+class QtFlyingEnemy : public FlyingEnemy, public QtUIObjectRectAdapter {
 public:
-    explicit QtFlyingEnemy(const FlyingEnemy& enemy);
+    QtFlyingEnemy(const Coord& top_left, int width, int height, float left_bound, float right_bound);
 
     void paint(
         QPainter* painter,
         const QStyleOptionGraphicsItem* option,
         QWidget* widget = nullptr
     ) override;
-
-private:
-    const FlyingEnemy& enemy;
 };
 
 } // namespace biv

@@ -4,9 +4,9 @@
 
 using biv::QtJumpingEnemy;
 
-QtJumpingEnemy::QtJumpingEnemy(const JumpingEnemy& e)
-    : QtUIObjectRectAdapter(e.get_rect()),
-      enemy(e) {}
+QtJumpingEnemy::QtJumpingEnemy(const Coord& top_left, int width, int height)
+    : JumpingEnemy(top_left, width, height),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
 void QtJumpingEnemy::paint(
     QPainter* painter,

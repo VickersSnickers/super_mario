@@ -4,16 +4,16 @@
 
 using biv::QtFullBox;
 
-QtFullBox::QtFullBox(const FullBox& b)
-    : QtUIObjectRectAdapter(b.get_rect()),
-      box(b) {}
+QtFullBox::QtFullBox(const Coord& top_left, int width, int height, UIFactory* ui_factory)
+    : FullBox(top_left, width, height, ui_factory),
+      QtUIObjectRectAdapter(static_cast<const Rect&>(*this)) {}
 
 void QtFullBox::paint(
     QPainter* painter,
     const QStyleOptionGraphicsItem*,
     QWidget*
 ) {
-    if (box.is_active()) {
+    if (is_active()) {
         painter->setBrush(Qt::yellow); // активная — жёлтая
     } else {
         painter->setBrush(Qt::darkGray); // неактивная — тёмно-серая
